@@ -60,25 +60,11 @@ export default function TabLayout() {
         name="home"
         options={{
           title: "Home",
-          headerTitle: () => <CustomHeaderTitle title="Custom Home Title" />,
+          headerTitle: () => <CustomHeaderTitle title="Shipment List" />,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               size={24}
               name={focused ? "home" : "home-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="send"
-        options={{
-          title: "Send",
-          headerTitle: () => <CustomHeaderTitle title="Add Shipment" />,
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              size={24}
-              name={focused ? "cube" : "cube-outline"}
               color={color}
             />
           ),
