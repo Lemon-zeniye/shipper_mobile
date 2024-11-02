@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { Link, useNavigation, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -130,9 +131,23 @@ const Item = ({ item, onPress }: ItemProps) => (
 
 const App = () => {
   const [selectedId, setSelectedId] = useState<string>();
+  const router = useRouter();
+  const [refreshing, setRefreshing] = useState(false);
+  const handleRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1000);
+  };
 
   const renderItem = ({ item }: { item: ItemData }) => (
-    <Item item={item} onPress={() => setSelectedId(item.id)} />
+    <Item
+      item={item}
+      onPress={() => {
+        setSelectedId(item.id);
+        router.push(`/shipmentDetail?itemId=${item.id}`);
+      }}
+    />
   );
 
   return (
@@ -143,6 +158,8 @@ const App = () => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           extraData={selectedId}
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
         />
       </SafeAreaView>
     </SafeAreaProvider>
