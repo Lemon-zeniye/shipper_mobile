@@ -71,6 +71,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="send"
+        options={{
+          title: "Send",
+          headerTitle: () => <CustomHeaderTitle title="Add Shipment" />,
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              size={24}
+              name={focused ? "cube" : "cube-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="track"
         options={{
           title: "Track",
